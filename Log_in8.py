@@ -1,7 +1,5 @@
 from tkinter import *
 import mysql.connector
-import socket
-import threading
 from tkinter.tix import *
 
 db = mysql.connector.connect(user='root', password='root',
@@ -58,7 +56,7 @@ def CreaDia():
 		cursor.execute("INSERT INTO bazadate.dialog(DialogName) VALUES(%s)", (e_dialog,))
 		db.commit()
 
-	i_dialog = StringVar()	
+	i_dialog = StringVar()
 
 
 	def quit():
@@ -67,7 +65,7 @@ def CreaDia():
 	Dialog_enter = Entry(NewDia, width = 30, textvariable = i_dialog)
 	Dialog_enter.place(x = 25, y = 45)
 
-	Close = Button(NewDia,   
+	Close = Button(NewDia,
              text=" x ",
              width=3, height=1,
              bg="white", fg="black", command = quit)
@@ -105,9 +103,9 @@ def Dialog():
 			y = cursor.execute(f"SELECT UserName FROM users WHERE Login = '{e_code}'")
 			for row in cursor.fetchall():
 				y = row
-				return y 
+				return y
 
-	
+
 
 
 	def CreForm():    #Створює форму діалогу при натисканні на кнопку з назвою діалогу
@@ -141,7 +139,7 @@ def Dialog():
 				mensahe = input('['+alias+'] -  ')
 				sor.sendto(('  ['+alias+'] -  '+mensahe).encode('utf-8'), server)
 				'''label = Label(DiaWindow, text = (('  ['+alias+'] -  '+mensahe).encode('utf-8'), server))
-																	label.place(x = 250, y = 100)'''	
+																	label.place(x = 250, y = 100)'''
 
 
 			'''TeEd = Entry(DiaWindow, width = 65)
@@ -151,7 +149,7 @@ def Dialog():
 	             text = "➔" ,
 	             width=6, height=2,
 	             bg="white", fg="black")
-			ButEd.place(x=549, y=620)	
+			ButEd.place(x=549, y=620)
 
 	def DiaForm():   #Вибирає назву діалога де його ІД = 1
 		e_dialog = i_dialog.get()
@@ -161,7 +159,7 @@ def Dialog():
                               database='bazadate')
 
 		#mysql.connector.connect('127.0.0.1', 'root', 'root', 'bazadate')
-			
+
 		cursor = db.cursor()
 		d = cursor.execute(f"SELECT DialogName FROM dialog")
 		yyy = 85
@@ -272,7 +270,7 @@ def OpenReg():
 		e_price = i_price.get()
 
 		#mysql.connector.connect('127.0.0.1', 'root', 'root', 'bazadate')
-		    
+
 		cursor = db.cursor()
 
 		cursor.execute("INSERT INTO users(Login, Password, UserName) VALUES(%s, %s, %s)", (e_code, e_name, e_price))
@@ -290,7 +288,7 @@ def OpenReg():
 		cur.execute('SELECT * FROM users;')
 		for row in cur.fetchall():
 			print(*row)
-	
+
 
 	i_code = StringVar()
 	i_name = StringVar()
@@ -318,7 +316,7 @@ def OpenReg():
 
 	user_name_edit = Entry(Lowroot, width=15, textvariable = i_price)
 	user_name_edit.place(x=120, y=100)
-	
+
 
 	insert = Button(Lowroot, text="Зареєструвати", width=20, height=2, bg="white", fg="black", command = lambda:[reg(), quit()])
 	#insert.bind("<Button-1>")
@@ -391,7 +389,7 @@ login_edit.place(x = 105, y = 65)
 
 password_edit = Entry(root, width = 20, textvariable = i_name)
 password_edit.place(x = 105, y = 95)
-	
+
 
 
 Log_in = Button(root,
